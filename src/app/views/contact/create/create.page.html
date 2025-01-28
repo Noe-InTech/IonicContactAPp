@@ -1,71 +1,66 @@
 <ion-content>
   <div class="page-container">
-  
-  <div class="contact-details-container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Création d'un Contact</ion-card-title>
-      </ion-card-header>
 
-      <ion-card-content>
-        <!-- Formulaire avec la directive formGroup -->
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="contact-details-container">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Création d'un Contact</ion-card-title>
+        </ion-card-header>
 
-          <!-- Prénom -->
-          <ion-item>
-            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-            <ion-label position="floating">Prénom</ion-label>
-            <ion-input type="text" formControlName="firstName"></ion-input>
-          </ion-item>
-          <ion-text color="danger" *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched">
-            Le prénom est obligatoire.
-          </ion-text>
+        <ion-card-content>
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
-          <!-- Nom -->
-          <ion-item>
-            <ion-icon name="person-add-outline" slot="start"></ion-icon>
-            <ion-label position="floating">Nom</ion-label>
-            <ion-input type="text" formControlName="lastName"></ion-input>
-          </ion-item>
-          <ion-text color="danger" *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched">
-            Le nom est obligatoire.
-          </ion-text>
+            <ion-item>
+              <ion-label position="floating">Prénom</ion-label>
+              <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+              <ion-input type="text" formControlName="firstName" placeholder="Prénom"></ion-input>
+            </ion-item>
+            <ion-text color="danger"
+              *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched">
+              Le prénom est obligatoire.
+            </ion-text>
 
-          <!-- Email -->
-          <ion-item>
-            <ion-icon name="mail-outline" slot="start"></ion-icon>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input type="email" formControlName="email"></ion-input>
-          </ion-item>
-          <ion-text color="danger" *ngIf="contactForm.get('email')?.hasError('emailTaken')">
-            L'email est déjà pris.
-          </ion-text>
-       
+            <ion-item>
+              <ion-label position="floating">Nom</ion-label>
+              <ion-icon name="person-add-outline" slot="start"></ion-icon>
+              <ion-input type="text" formControlName="lastName" placeholder="Nom de famille"></ion-input>
+            </ion-item>
+            <ion-text color="danger"
+              *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched">
+              Le nom est obligatoire.
+            </ion-text>
 
-          <!-- Téléphone -->
-          <ion-item>
-            <ion-icon name="call-outline" slot="start"></ion-icon>
-            <ion-label position="floating">Téléphone</ion-label>
-            <ion-input type="tel" formControlName="phone"></ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-icon name="mail-outline" slot="start"></ion-icon>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
+            </ion-item>
+            <ion-text color="danger" *ngIf="contactForm.get('email')?.hasError('emailTaken')">
+              L'email est déjà pris.
+            </ion-text>
 
-          <!-- Adresse -->
-          <ion-item>
-            <ion-icon name="location-outline" slot="start"></ion-icon>
-            <ion-label position="floating">Adresse</ion-label>
-            <ion-input type="text" formControlName="address"></ion-input>
-          </ion-item>
 
-          <!-- Bouton de soumission -->
-          <ion-button expand="full" type="submit" [disabled]="contactForm.invalid" class="submit-btn">
-            Enregistrer
-          </ion-button>
+            <ion-item>
+              <ion-label position="floating">Téléphone</ion-label>
+              <ion-icon name="call-outline" slot="start"></ion-icon>
+              <ion-input type="tel" formControlName="phone" placeholder="Numéro de téléphone"></ion-input>
+            </ion-item>
 
-        </form>
-      </ion-card-content>
-    </ion-card>
+            <ion-item>
+              <ion-label position="floating">Adresse</ion-label>
+              <ion-icon name="location-outline" slot="start"></ion-icon>
+              <ion-input type="text" formControlName="address"></ion-input>
+            </ion-item>
+
+            <ion-button expand="full" type="submit" [disabled]="contactForm.invalid" class="submit-btn">
+              Enregistrer
+            </ion-button>
+
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
-</div>
-<app-nav-bar></app-nav-bar>
+  <app-nav-bar></app-nav-bar>
 
 </ion-content>

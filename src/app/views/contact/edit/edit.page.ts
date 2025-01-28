@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactService } from 'src/app/services/contact.service';
 import { Contact } from 'src/app/models/contact.model';
-import { ToastController } from '@ionic/angular';  // Importation du ToastController
+import { ToastController } from '@ionic/angular';  
 
 @Component({
   standalone: false,
@@ -14,13 +14,13 @@ export class EditPage implements OnInit {
   contactId: number = 0;
   contactDetails: Contact | null = null;
   isLoading: boolean = false;
-  showDeleteModal: boolean = false; // État de la modale de confirmation
+  showDeleteModal: boolean = false; 
 
   constructor(
     private route: ActivatedRoute,
     private contactService: ContactService,
     private router: Router,
-    private toastController: ToastController  // Injection du ToastController
+    private toastController: ToastController  
   ) {}
 
   ngOnInit() {
@@ -93,7 +93,7 @@ export class EditPage implements OnInit {
             color: 'success',
             position: 'top',
           });
-          await toast.present();  // Attendre que le toast soit affiché
+          await toast.present();  
           
           // Redirection vers /home après la présentation du toast
           this.router.navigate(['/home']);
@@ -108,7 +108,7 @@ export class EditPage implements OnInit {
             color: 'danger',
             position: 'top',
           });
-          await toast.present();  // Attendre que le toast soit affiché
+          await toast.present(); 
         }
       );
     }

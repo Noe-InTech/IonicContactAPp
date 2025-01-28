@@ -17,8 +17,10 @@
       class="search-bar"
     ></ion-searchbar>
 
+    <ion-spinner *ngIf="isLoading" name="crescent" class="spinner"></ion-spinner>
+
     <ion-list>
-      <div *ngIf="filteredContacts.length === 0" class="no-contacts-message">
+      <div *ngIf="filteredContacts.length === 0 && !isLoading" class="no-contacts-message">
         <ion-item lines="none">
           <ion-label text-center>Aucun contact trouvé. Essayez une autre recherche.</ion-label>
         </ion-item>

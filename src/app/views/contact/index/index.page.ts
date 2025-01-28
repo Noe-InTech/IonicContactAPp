@@ -15,12 +15,13 @@ export class IndexPage implements OnInit {
   contacts: Contact[] = [];
   filteredContacts: Contact[] = [];
   searchText: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private contactService: ContactService,
     private authService: AuthService,
     private router: Router,
-    private toastController: ToastController // Injection du ToastController
+    private toastController: ToastController 
   ) { }
 
   ngOnInit() {
@@ -45,31 +46,38 @@ export class IndexPage implements OnInit {
   }
 
   filterContacts() {
-    if (!this.searchText) {
-      this.filteredContacts = this.contacts;
-    } else {
-      this.filteredContacts = this.contacts.filter(contact => {
-        return contact.firstName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          contact.lastName.toLowerCase().includes(this.searchText.toLowerCase());
-      });
-    }
+    this.isLoading = true;
+
+    // Simulation d'un délai de 1 seconde
+    setTimeout(() => {
+      if (!this.searchText) {
+        this.filteredContacts = this.contacts;
+      } else {
+        this.filteredContacts = this.contacts.filter(contact => {
+          return contact.firstName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+            contact.lastName.toLowerCase().includes(this.searchText.toLowerCase());
+        });
+      }
+
+      // Cacher le loader après le filtrage
+      this.isLoading = false;
+    }, 1000); // Délai simulé de 1 seconde
   }
 
   deleteContact(contactId: number) {
-    // Filtrage du contact à supprimer
     this.contacts = this.contacts.filter((contact) => contact.id !== contactId);
-    this.filterContacts(); // Rafraîchir les contacts filtrés
-    this.showToast('Contact supprimé avec succès.', 'success'); // Afficher un toast de succès
+    this.filterContacts(); 
+    this.showToast('Contact supprimé avec succès.', 'success');
   }
 
   // Fonction pour afficher un toast
   async showToast(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 2000, // Durée en millisecondes
-      color: color, // Couleur du toast (success, danger, etc.)
-      position: 'top', // Position du toast (top, bottom, middle)
+      duration: 2000, 
+      color: color, 
+      position: 'top', 
     });
-    toast.present(); // Afficher le toast
+    toast.present(); 
   }
 }

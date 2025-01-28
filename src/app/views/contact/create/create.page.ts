@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ToastController } from '@ionic/angular';
+import { Geolocation } from '@capacitor/geolocation';
+import { ContactService } from 'src/app/services/contact.service';
 import { Contact } from 'src/app/models/contact.model';
-import { AuthService } from 'src/app/services/auth.service';
-import { ContactService, } from 'src/app/services/contact.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   standalone: false,
@@ -15,13 +15,15 @@ import { ContactService, } from 'src/app/services/contact.service';
 })
 export class CreatePage implements OnInit {
   contactForm: FormGroup;
-  errorMessage: string = ''; // Message d'erreur global
+  errorMessage: string = '';
 
   constructor(
     private contactService: ContactService,
     private fb: FormBuilder,
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private http: HttpClient
+
   ) {
     this.contactForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -32,21 +34,52 @@ export class CreatePage implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.setCurrentLocation();
+  }
+
+  async setCurrentLocation() {
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();
+      const latitude = coordinates.coords.latitude;
+      const longitude = coordinates.coords.longitude;
+
+      console.log('Coordonnées récupérées:', latitude, longitude);
+
+      const geocodedAddress = await this.getAddressFromCoordinates(latitude, longitude);
+
+      if (geocodedAddress) {
+        this.contactForm.get('address')?.setValue(geocodedAddress);
+      } else {
+        console.error('Aucune adresse trouvée');
+      }
+    } catch (error) {
+      console.error('Erreur de géolocalisation:', error);
+      this.showToast('Impossible de récupérer l\'adresse actuelle.');
+    }
+  }
+
+  async getAddressFromCoordinates(latitude: number, longitude: number) {
+    const apiKey = 'f6619a8778764cdf9c6cd7768ab5b17e';  
+    const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`;
+
+    try {
+      const response: any = await this.http.get(apiUrl).toPromise();
+      if (response && response.results.length > 0) {
+        return response.results[0].formatted;  
+      }
+      return null;
+    } catch (error) {
+      console.error('Erreur de récupération de l\'adresse:', error);
+      return null;
+    }
+  }
 
   onSubmit() {
-    console.log(this.contactForm)
     if (this.contactForm.invalid) {
       return;
     }
 
-    console.log('Formulaire soumis avec les valeurs :', this.contactForm.value);
-
-    if (!this.contactForm.value.email) {
-      this.errorMessage = 'L\'email est obligatoire.';
-      return;
-    }
-    console.log(this.contactForm.value.email);
     const contactData = new Contact(
       0,
       this.contactForm.value.firstName,
@@ -55,20 +88,15 @@ export class CreatePage implements OnInit {
       this.contactForm.value.phone,
       this.contactForm.value.address
     );
-    console.log(contactData);
-    console.log(this.contactForm.value.email);
 
     this.contactService.createContact(contactData).subscribe(
       (response) => {
         if (response && response.id) {
           this.router.navigate(['/contact', response.id]);
           this.showToast('Le contact a été créé avec succès.');
-        } else {
-          console.error('ID du contact manquant dans la réponse');
         }
       },
       (error) => {
-        console.error('Erreur lors de la création du contact :', error);
         if (error.error.message === 'The email has already been taken.') {
           this.errorMessage = 'Cet email est déjà utilisé.';
           this.contactForm.get('email')?.setErrors({ emailTaken: true });
