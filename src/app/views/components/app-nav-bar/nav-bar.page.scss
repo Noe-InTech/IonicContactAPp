@@ -1,0 +1,39 @@
+.mainContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #007bff, #00c6ff);    border-radius: 10px;
+    width: 97vw;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    color: white !important;
+    overflow: hidden;
+  }
+  
+  footer {
+    --background: transparent;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    border: none;
+    margin-bottom: 1rem;
+  }
+  
+  .tabBorder {
+    border-radius: 10px;
+  }
+  
+  ion-tab-button {
+    position: relative;
+    margin-top: 0.8rem;
+  }
+  
+  ion-tab-button p {
+    margin-bottom: 0.8rem;
+  }
+  
+  p {
+    z-index: 1;
+  }
+  
+  

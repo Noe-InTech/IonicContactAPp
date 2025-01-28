@@ -1,0 +1,57 @@
+<ion-content>
+  <div class="page-container">
+
+    <div *ngIf="contactDetails" class="contact-details-container">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Informations du Contact</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item class="contact-item">
+            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Prénom</ion-label>
+            <ion-input [value]="contactDetails.firstName" disabled></ion-input>
+          </ion-item>
+
+          <ion-item class="contact-item">
+            <ion-icon name="person-add-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Nom</ion-label>
+            <ion-input [value]="contactDetails.lastName" disabled></ion-input>
+          </ion-item>
+
+          <ion-item class="contact-item">
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input [value]="contactDetails.email" disabled></ion-input>
+          </ion-item>
+
+          <ion-item class="contact-item">
+            <ion-icon name="call-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Téléphone</ion-label>
+            <ion-input [value]="contactDetails.phone" disabled></ion-input>
+          </ion-item>
+
+          <ion-item class="contact-item">
+            <ion-icon name="location-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Adresse</ion-label>
+            <ion-input [value]="contactDetails.address" disabled></ion-input>
+          </ion-item>
+
+          <ion-button expand="full" (click)="goToEditPage()">
+            <ion-icon name="create-outline" slot="start"></ion-icon>
+            Modifier
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="!contactDetails" class="loading-container">
+      <ion-spinner name="circles"></ion-spinner>
+      <p>Chargement des détails du contact...</p>
+    </div>
+  </div>
+
+  <app-nav-bar></app-nav-bar>
+
+</ion-content>

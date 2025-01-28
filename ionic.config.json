@@ -1,0 +1,7 @@
+{
+  "name": "QuizzApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

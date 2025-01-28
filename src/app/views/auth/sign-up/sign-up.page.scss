@@ -1,0 +1,109 @@
+/* Conteneur principal pour centrer */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Hauteur pleine de la fenêtre */
+  background: linear-gradient(135deg, #eef2f7, #cfd6e6); /* Fond agréable */
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100vw;
+}
+
+/* Formulaire centré */
+.form-container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+
+/* En-tête du formulaire */
+.form-header h1 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.form-header p {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Champs du formulaire */
+ion-item {
+  --highlight-color: var(--ion-color-primary);
+  --ion-item-background: #f7f8fc;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ion-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+ion-input {
+  font-size: 16px;
+  color: #333;
+  background: transparent;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+/* Texte d'erreur */
+ion-text {
+  font-size: 12px;
+  margin-top: -15px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: left;
+}
+
+/* Bouton de soumission */
+ion-button {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+ion-button:disabled {
+  opacity: 0.5;
+}
+
+ion-button:hover {
+  transform: translateY(-5px);
+}
+
+/* Barre de navigation */
+.nav-bar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

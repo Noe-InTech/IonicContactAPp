@@ -1,0 +1,92 @@
+<ion-content>
+  <div class="page-container">
+
+    <div *ngIf="isLoading" class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Chargement des informations...</p>
+    </div>
+
+    <div *ngIf="!isLoading && contactDetails" class="contact-modify-container">
+      <form (ngSubmit)="saveContact()">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Modifier le Contact</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item class="contact-item">
+              <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+              <ion-label position="floating">Prénom</ion-label>
+              <ion-input [(ngModel)]="contactDetails.firstName" name="firstName" required></ion-input>
+            </ion-item>
+
+            <ion-item class="contact-item">
+              <ion-icon name="person-add-outline" slot="start"></ion-icon>
+              <ion-label position="floating">Nom</ion-label>
+              <ion-input [(ngModel)]="contactDetails.lastName" name="lastName" required></ion-input>
+            </ion-item>
+
+            <ion-item class="contact-item">
+              <ion-icon name="mail-outline" slot="start"></ion-icon>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input [(ngModel)]="contactDetails.email" name="email" type="email" required></ion-input>
+            </ion-item>
+
+            <ion-item class="contact-item">
+              <ion-icon name="call-outline" slot="start"></ion-icon>
+              <ion-label position="floating">Téléphone</ion-label>
+              <ion-input [(ngModel)]="contactDetails.phone" name="phone" type="tel" required></ion-input>
+            </ion-item>
+
+            <ion-item class="contact-item">
+              <ion-icon name="location-outline" slot="start"></ion-icon>
+              <ion-label position="floating">Adresse</ion-label>
+              <ion-input [(ngModel)]="contactDetails.address" name="address" required></ion-input>
+            </ion-item>
+
+            <ion-button expand="full" type="submit" color="primary">
+              Sauvegarder
+            </ion-button>
+
+            <ion-button expand="full" color="danger" (click)="confirmDelete()">
+              Supprimer le Contact
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </form>
+    </div>
+
+    <div *ngIf="!isLoading && !contactDetails">
+      <p>Aucun détail trouvé pour ce contact.</p>
+    </div>
+
+  </div>
+
+  <!-- Modal de confirmation de suppression -->
+  <ion-modal *ngIf="showDeleteModal" [isOpen]="showDeleteModal" (ionModalDidDismiss)="dismissModal(false)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Confirmation</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="dismissModal(false)">Fermer</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <p>Voulez-vous vraiment supprimer ce contact ?</p>
+        <h3>{{ contactDetails?.firstName }} {{ contactDetails?.lastName }}</h3>
+        <ion-button expand="block" color="danger" (click)="deleteContact()">
+          Confirmer la suppression
+        </ion-button>
+        <ion-button expand="block" color="medium" (click)="dismissModal(false)">
+          Annuler
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <app-nav-bar></app-nav-bar>
+
+</ion-content>

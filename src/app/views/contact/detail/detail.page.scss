@@ -1,0 +1,143 @@
+/* Conteneur principal */
+.contact-details-container {
+
+  background: linear-gradient(135deg, #f3f4f6, #d0d4e0);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Carte principale */
+ion-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+ion-card-header {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  padding: 20px;
+  border-radius: 16px 16px 0 0;
+}
+
+ion-card-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Items de contact */
+ion-item {
+  --highlight-color: var(--ion-color-primary);
+  --ion-item-background: #f7f8fc;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+ion-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Icônes de chaque champ */
+ion-item ion-icon {
+  color: #007bff;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+ion-item:hover ion-icon {
+  transform: scale(1.1);
+}
+
+/* Labels */
+ion-item ion-label {
+  color: #444;
+  font-weight: 600;
+  margin-bottom: .5rem;
+  font-size: 16px;
+}
+
+
+/* Entrées */
+ion-input {
+  font-size: 16px;
+  color: #333;
+  background: transparent;
+  border-radius: 12px;
+  padding: 12px;
+  transition: background-color 0.3s ease;
+}
+
+ion-input:disabled {
+  background-color: #e0e0e0;
+}
+
+/* Bouton de modification */
+ion-button {
+  background-color: tra;
+  margin-top: 30px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+ion-button:hover {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  transform: translateY(-5px);
+}
+
+ion-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+/* Spinner de chargement */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 50px;
+}
+
+ion-spinner {
+  margin-bottom: 15px;
+  color: #007bff;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+app-nav-bar{
+  bottom : 0;
+  position: fixed;
+  width: 100%;
+}
+
+.page-container{
+  padding-bottom: 60px;
+}

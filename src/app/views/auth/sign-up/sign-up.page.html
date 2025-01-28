@@ -1,0 +1,59 @@
+<ion-content>
+  <div class="signup-container">
+    <div class="form-container">
+      <div class="form-header">
+        <h1>Bienvenue !</h1>
+        <p>Inscrivez-vous pour accéder à nos fonctionnalités exclusives.</p>
+      </div>
+
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-input
+            label="Nom d'utilisateur"
+            type="text"
+            placeholder="Entrez votre nom d'utilisateur"
+            formControlName="username"
+            label-placement="floating">
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched">
+          <small>Le nom d'utilisateur est requis et doit contenir au moins 3 caractères.</small>
+        </ion-text>
+
+        <ion-item>
+          <ion-input
+            label="Email"
+            type="email"
+            placeholder="UneBonnenNote@stp.fr"
+            formControlName="email"
+            label-placement="floating">
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched">
+          <small>Veuillez entrer un email valide.</small>
+        </ion-text>
+
+        <ion-item>
+          <ion-input
+            label="Mot de passe"
+            type="password"
+            placeholder="******"
+            formControlName="password"
+            label-placement="floating">
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">
+          <small>Le mot de passe est requis et doit contenir au moins 6 caractères.</small>
+        </ion-text>
+
+        <ion-button expand="block" type="submit" [disabled]="signUpForm.invalid">
+          Sign Up
+        </ion-button>
+      </form>
+
+      <ion-text class="login-link" color="primary" style="display: block; margin-top: 15px; text-align: center;">
+        <small>Vous avez déjà un compte ? <a [routerLink]="['/login']">Connectez-vous</a></small>
+      </ion-text>
+    </div>
+  </div>
+</ion-content>

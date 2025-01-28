@@ -1,0 +1,37 @@
+<ion-content class="contact-container">
+  <div class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">Vos Contacts</h1>
+      <p class="page-description">
+        Recherchez rapidement un contact en utilisant notre barre de recherche,
+        ou parcourez la liste ci-dessous.
+      </p>
+    </div>
+
+    <ion-searchbar
+      [(ngModel)]="searchText"
+      [debounce]="500"
+      placeholder="Rechercher par nom ou prénom"
+      showClearButton="focus"
+      (ionInput)="filterContacts()"
+      class="search-bar"
+    ></ion-searchbar>
+
+    <ion-list>
+      <div *ngIf="filteredContacts.length === 0" class="no-contacts-message">
+        <ion-item lines="none">
+          <ion-label text-center>Aucun contact trouvé. Essayez une autre recherche.</ion-label>
+        </ion-item>
+      </div>
+
+      <app-contact-card
+        *ngFor="let contact of filteredContacts"
+        [firstName]="contact.firstName"
+        [lastName]="contact.lastName"
+        [id]="contact.id"
+        (deleteContact)="deleteContact($event)"
+      ></app-contact-card>
+    </ion-list>
+  </div>
+  <app-nav-bar></app-nav-bar>
+</ion-content>

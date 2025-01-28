@@ -1,0 +1,38 @@
+<ion-content>
+  <div class="login-container">
+    <div class="form-container">
+      <div class="form-header">
+        <h1>Connectez-vous</h1>
+        <p>Veuillez entrer vos identifiants pour accéder à votre compte.</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-input label="Email" type="email" placeholder="UneBonnenNote@stp.fr" formControlName="email"
+            label-placement="floating">
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <small>Veuillez entrer un email valide.</small>
+        </ion-text>
+
+        <ion-item>
+          <ion-input label="Mot de passe" type="password" placeholder="******" formControlName="password"
+            label-placement="floating">
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <small>Le mot de passe est requis et doit contenir au moins 6 caractères.</small>
+        </ion-text>
+
+        <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
+          Login
+        </ion-button>
+      </form>
+
+      <ion-text class="sign-up-link" color="primary" style="display: block; margin-top: 15px; text-align: center;">
+        <small>Pas de compte ? <a [routerLink]="['/sign-up']">Inscrivez-vous</a></small>
+      </ion-text>
+    </div>
+  </div>
+</ion-content>
