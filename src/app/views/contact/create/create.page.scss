@@ -135,3 +135,7 @@ app-nav-bar{
 .page-container{
   padding-bottom: 60px;
 }
+
+ion-item.custom-label ion-label { //Pour remonter le texte du label plus haut et l'alligner à l'icone 
+  transform: translateY(-1px);
+}

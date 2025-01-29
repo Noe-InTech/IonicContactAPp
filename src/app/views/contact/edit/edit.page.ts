@@ -79,7 +79,6 @@ export class EditPage implements OnInit {
   // Supprimer le contact
   deleteContact() {
     if (this.contactId) {
-      // Fermer la modale avant de procéder à la suppression
       this.showDeleteModal = false;
   
       this.contactService.deleteContact(this.contactId).subscribe(
@@ -95,13 +94,11 @@ export class EditPage implements OnInit {
           });
           await toast.present();  
           
-          // Redirection vers /home après la présentation du toast
           this.router.navigate(['/home']);
         },
         async (error) => {
           console.error('Erreur lors de la suppression du contact', error);
           
-          // Affichage du toast d'erreur
           const toast = await this.toastController.create({
             message: 'Erreur lors de la suppression du contact.',
             duration: 2000,

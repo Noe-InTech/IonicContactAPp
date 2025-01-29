@@ -14,31 +14,31 @@
           </ion-card-header>
 
           <ion-card-content>
-            <ion-item class="contact-item">
+            <ion-item class="contact-item custom-label">
               <ion-icon name="person-circle-outline" slot="start"></ion-icon>
               <ion-label position="floating">Prénom</ion-label>
               <ion-input [(ngModel)]="contactDetails.firstName" name="firstName" required></ion-input>
             </ion-item>
 
-            <ion-item class="contact-item">
+            <ion-item class="contact-item custom-label">
               <ion-icon name="person-add-outline" slot="start"></ion-icon>
               <ion-label position="floating">Nom</ion-label>
               <ion-input [(ngModel)]="contactDetails.lastName" name="lastName" required></ion-input>
             </ion-item>
 
-            <ion-item class="contact-item">
+            <ion-item class="contact-item custom-label">
               <ion-icon name="mail-outline" slot="start"></ion-icon>
               <ion-label position="floating">Email</ion-label>
               <ion-input [(ngModel)]="contactDetails.email" name="email" type="email" required></ion-input>
             </ion-item>
 
-            <ion-item class="contact-item">
+            <ion-item class="contact-item custom-label">
               <ion-icon name="call-outline" slot="start"></ion-icon>
               <ion-label position="floating">Téléphone</ion-label>
               <ion-input [(ngModel)]="contactDetails.phone" name="phone" type="tel" required></ion-input>
             </ion-item>
 
-            <ion-item class="contact-item">
+            <ion-item class="contact-item custom-label">
               <ion-icon name="location-outline" slot="start"></ion-icon>
               <ion-label position="floating">Adresse</ion-label>
               <ion-input [(ngModel)]="contactDetails.address" name="address" required></ion-input>

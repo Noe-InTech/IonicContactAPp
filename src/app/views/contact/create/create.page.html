@@ -10,8 +10,8 @@
         <ion-card-content>
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
-            <ion-item>
-              <ion-label position="floating">Prénom</ion-label>
+            <ion-item class="custom-label">
+              <ion-label position="floating .custom-label">Prénom</ion-label>
               <ion-icon name="person-circle-outline" slot="start"></ion-icon>
               <ion-input type="text" formControlName="firstName" placeholder="Prénom"></ion-input>
             </ion-item>
@@ -20,7 +20,7 @@
               Le prénom est obligatoire.
             </ion-text>
 
-            <ion-item>
+            <ion-item class="custom-label">
               <ion-label position="floating">Nom</ion-label>
               <ion-icon name="person-add-outline" slot="start"></ion-icon>
               <ion-input type="text" formControlName="lastName" placeholder="Nom de famille"></ion-input>
@@ -30,7 +30,7 @@
               Le nom est obligatoire.
             </ion-text>
 
-            <ion-item>
+            <ion-item class="custom-label">
               <ion-icon name="mail-outline" slot="start"></ion-icon>
               <ion-label position="floating">Email</ion-label>
               <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
@@ -40,17 +40,21 @@
             </ion-text>
 
 
-            <ion-item>
+            <ion-item class="custom-label">
               <ion-label position="floating">Téléphone</ion-label>
               <ion-icon name="call-outline" slot="start"></ion-icon>
               <ion-input type="tel" formControlName="phone" placeholder="Numéro de téléphone"></ion-input>
             </ion-item>
 
-            <ion-item>
+            <ion-item class="custom-label">
               <ion-label position="floating">Adresse</ion-label>
               <ion-icon name="location-outline" slot="start"></ion-icon>
               <ion-input type="text" formControlName="address"></ion-input>
             </ion-item>
+            <ion-text color="small">
+              L'adresse a été renseignée automatiquement grâce à la géolocalisation de votre téléphone.
+            </ion-text>
+            
 
             <ion-button expand="full" type="submit" [disabled]="contactForm.invalid" class="submit-btn">
               Enregistrer
