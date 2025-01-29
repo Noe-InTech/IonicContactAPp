@@ -85,7 +85,6 @@
     font-weight: bold;
     border-radius: 25px;
     padding: 12px 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
   
   ion-button:hover {
@@ -136,3 +135,5 @@
   ion-item.custom-label ion-label { //Pour remonter le texte du label plus haut et l'alligner à l'icone 
     transform: translateY(-1px);
   }
+
+ 
